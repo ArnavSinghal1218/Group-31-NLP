@@ -1,9 +1,13 @@
 # streamlit UI
+# pip install streamlit elasticsearch sentence_transformers transformers
+
 import streamlit as st
 from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
+from transformers import AutoTokenizer, AutoModel
+import torch
 
-indexName = "pmids"
+indexName = "PMID"
 
 try:
     es = Elasticsearch(
@@ -19,12 +23,18 @@ except Exception as e:
     st.error(f"Connection Error: {e}")
 
 def search(input_query):
-    model = SentenceTransformer('all-mpnet-base-v2')
-    query_vector = model.encode(input_query)
+    # Initialize PubMedBERT tokenizer and model
+    tokenizer = AutoTokenizer.from_pretrained("microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext")
+    model = AutoModel.from_pretrained("microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext")
+    
+    # Encode the query using PubMedBERT
+    inputs = tokenizer(input_query, return_tensors="pt", padding=True, truncation=True, max_length=512)
+    outputs = model(**inputs)
+    query_vector = outputs.last_hidden_state.mean(dim=1).detach().numpy()
 
     query = {
-        "field": "AbstractVector",  # Assuming your documents have an 'AbstractVector' field
-        "query_vector": query_vector,
+        "field": "AbstractVector",  # Ensure this matches the field in your Elasticsearch documents
+        "query_vector": query_vector.tolist(),
         "k": 10,
         "num_candidates": 500
     }
