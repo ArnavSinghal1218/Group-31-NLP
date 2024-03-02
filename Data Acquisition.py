@@ -94,3 +94,100 @@ def get_abstract_multiproc(proc_num, total_process, lock, lists, lists_author, l
             lists_failed.append(_article_ids[current_proc_num])
         current_proc_num += total_process
         time.sleep(0.5)
+
+
+def get_abstract_multiproctest(proc_num):
+    #proc_num, total_process, lock, lists, _article_ids = args_tuple
+    print("process" + proc_num + "\n")
+
+# init_dt()
+# On Windows the subprocesses will import (i.e. execute) the main module at start.
+# You need to insert an if __name__ == '__main__':
+#    guard in the main module to avoid creating subprocesses recursively.
+if __name__ == '__main__':
+
+    retstart = 0
+    len_last_response = 10_000
+
+    how_many = 10
+    # p = Pool(processes=how_many)
+
+    # func = partial(get_abstract_multiproc, how_many)
+    # zip(ind, itertools.repeat(how_many))
+    # data = p.map(get_abstract_multiproc, ind)
+
+    pool = multiprocessing.Pool(how_many)
+    manager = Manager()
+    l = manager.Lock()
+    my_list = manager.list([])
+    my_list_url = manager.list([])
+    my_list_title = manager.list([])
+    my_list_author = manager.list([])
+    article_ids = manager.list([])
+    my_list_failed = manager.list([])
+    my_list_aid = manager.list([])
+    # article_ids = []
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+    len_last_response, retstart, article_ids
+
+    for i in range(11): #2013 - 2023
+        print(f"#####################yeah:{2013+i}######################\n")
+        response = requests.get(
+            f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=intelligence&retmode=json&retmax=10000&mindate={2013+i}/01/01&maxdate={2013+i}/12/31",headers=headers)
+        data = response.json()
+
+        try:
+            id_list = data["esearchresult"]["idlist"]
+        except:
+            print("xx\n")
+            time.sleep(0.2)
+            continue
+        len_response = len(id_list)
+        retstart += len_response
+        len_last_response = len_response
+
+        article_ids.extend(id_list)
+
+        print(f'###article numbers:{len(article_ids)}###\n')
+        ind = [(i, how_many, l, my_list,my_list_author, my_list_url, my_list_title, article_ids, my_list_failed,my_list_aid) for i in range(how_many)]
+        pool.starmap(get_abstract_multiproc, ind)
+
+
+        len(my_list)
+        valid_abstracts = []
+        valid_author = []
+        valid_urls = []
+        valid_title = []
+        valid_aid = []
+        id = 0
+        for abstract in my_list:
+            if "intelligence" in abstract.lower():
+                valid_abstracts.append(abstract)
+                valid_author.append(my_list_author[id])
+                valid_urls.append(my_list_url[id])
+                valid_title.append(my_list_title[id])
+                valid_aid.append(my_list_aid[id])
+            id += 1
+        with open(f"valid_abstracts{2013+i}.json", "w+") as f:
+            f.write(json.dumps({
+                "abstracts": valid_abstracts,
+                "authior": valid_author,
+                "url": valid_urls,
+                "title": valid_title,
+                "article_id": valid_aid
+            }))
+        with open(f"failed{2013+i}.json", "w+") as f:
+            f.write(json.dumps({
+                "failed_id": list(my_list_failed),
+            }))
+        my_list_failed[:] = []
+        article_ids[:] = []
+        my_list[:] = []
+        my_list_url[:] = []
+        my_list_title[:] = []
+        my_list_author[:] = []
+        my_list_aid[:] = []
+
+    pool.close()
+    pool.join()
