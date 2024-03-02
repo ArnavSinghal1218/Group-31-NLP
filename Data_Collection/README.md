@@ -31,3 +31,19 @@ Uses a lock to synchronize access to shared data structures (lists) across multi
 Appends the retrieved abstract, author list, URL, title, and article ID to the respective shared lists if successful.
 If get_abstract fails, adds the failed article ID to a separate list for tracking.
 
+4. Main Execution Block (if _name_ == '_main_':):
+
+Iterates through years 2013-2023.
+For each year:
+Sends a request to the PubMed API to search for articles containing the term "intelligence" within that year's publication range.
+Parses the JSON response to extract a list of article IDs.
+Creates a Pool of worker processes for parallel execution.
+Initializes a manager object to create shared data structures (lists) accessible by all processes.
+Fetches abstracts for the retrieved IDs in parallel using pool.starmap and the get_abstract_multiproc function.
+After processing all years:
+Filters the retrieved abstracts to include only those containing the term "intelligence" in their lowercased text.
+Saves the valid abstracts, author information, URLs, titles, and article IDs to separate JSON files for each year.
+Saves failed article IDs to separate JSON files for each year.
+Cleans up the shared data structures for the next iteration.
+Closes and joins the worker pool to ensure proper termination.
+
