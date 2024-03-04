@@ -29,6 +29,8 @@ Mukul Bansal :- Mukul.Bansal@stud.uni-heidelberg.de
 
 Isak - I worked on getting some data, and a rudimentary model with embeddings for our first meeting with Prof. Gertz, and then tried to get a simple implementation of everything to work. As I ran into problems with docker, and opensearch I tried using elastic search, but as had issues with docker and didnt get it to work, Ou Li took over the work on the database. Then I made a draft, and improvements as we worked, on the QA-system, the UI, and integration of QA with the UI. Mukul then took over this proccess with the UI. 
 
+Ou Li - worked on embeddings, and did everything related to opensearch. Also retrieved text and data for opensearch. 
+
 ● **Advisor**: Prof. Dr. Michael Gertz
 
 ● **Anti-plagiarism Confirmation**: A short affirmation that you did the project's work
