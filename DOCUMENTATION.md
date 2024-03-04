@@ -31,6 +31,10 @@ Isak - I worked on getting some data, and a rudimentary model with embeddings fo
 
 Ou Li - worked on embeddings, and did everything related to opensearch. Also retrieved text and data for opensearch. 
 
+Arnav Singhal - Worked on getting data and cleaning and preprocessing it and Report /documentation part. The challenges that i faced were mostly with time managemnet and my system was getting crashed again and again due to system limitations.
+
+Mukul :- Worked on Data collection, UI and Some documentation. The main challenge that i faced was connecting the database with UI.
+
 ● **Advisor**: Prof. Dr. Michael Gertz
 
 ● **Anti-plagiarism Confirmation**: A short affirmation that you did the project's work
