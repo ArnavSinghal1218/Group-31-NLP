@@ -18,11 +18,16 @@ Arnav Singhal :- arnav.singhal@stud.uni-heidelberg.de
 
 Mukul Bansal :- Mukul.Bansal@stud.uni-heidelberg.de
 
-● **Member Contribution**: We also expect you to detail what each member did for the
-project. Each team member needs to contribute some text in which they describe what
-their contribution was, and which challenges they faced. If you wish, you can also
-provide a table like structure detailing the contributions to the different parts of your
-project.
+● **Member Contribution**: While all team members actively participated in the entirety of the project, each individual took on specific responsibilities within various tasks. These specialized contributions are detailed in the table below.
+
+| Members/Project Tasks | Data Acquisition | Data Cleaning & Preprocessing | Model Development & Training | User Interface Design & Development | Evaluation & Testing | Report/Documentation |
+|---|---|---|---|---|---|---|
+| Isak Bjerkem          |        ✅        |  -                            | ✅                          | ✅                                 | -                    | -                    |
+| Ou Li                 |        -          | ✅                           | ✅                          | -                                   | ✅                  |  -                   |
+| Arnav Singhal         |        ✅        |  ✅                          | -                            | -                                   | -                    | ✅                  |
+| Mukul Bansal          |        ✅        |   -                           | -                            | ✅                                 | -                    | -                    |
+
+
 
 ● **Advisor**: Give the name of your advisor.
 
@@ -142,6 +147,42 @@ While the core components like text embeddings and Transformers are established 
 **Combined Retrieval and Answer Extraction:** Going beyond just retrieving articles and directly extracting the answer provides a more user-friendly experience.
 
 
+**Experimental Setup and Results**
+
+**Data:**
+
+Source: Where did the data come from (e.g., specific PubMed article collection, custom dataset)?
+
+Size and format: First 9999 articles were used with abstracts
+
+Topic distribution: Were the articles evenly distributed across various healthcare topics, or was there a specific focus?
+
+**Evaluation Method:**
+
+The provided results indicate an accuracy of 66.67%, suggesting that this metric was used to evaluate the system's performance. Accuracy is a common quantitative metric defined as the proportion of correctly answered questions compared to the total number of questions.
+
+**Experimental Details:**
+
+: If your methods rely on configurable parameters, specify
+them, such that your results are replicable. Explain why you chose the parameters in
+that way (e.g., did you do some grid search?)
+
+**Results:**
+
+The system achieved an accuracy of 66.67%, correctly answering 2 out of 3 questions. This suggests potential effectiveness but also highlights room for improvement.
+
+Correct answers: The system seems capable of handling questions even when abstracts are unavailable, potentially using information from the full text or other elements of the retrieved articles.
+
+Incorrect answer: The system struggled with the question about "AI's role in healthcare," potentially due to limitations in context processing or retrieving irrelevant source articles.
+
+**Analysis:**
+
+: You can include some qualitative analysis in this section. Does your system
+work as expected? Are there cases in which your approach consistently succeeds in
+the task, or surprisingly fails? If you have a baseline, you can also compare if they
+succeed and fail in the same contexts or if your approach may be suitable for other
+applications than the baseline. Underpin your points using examples or metrics
+instead of stating unproven claims.
 
 
 **Conclusion and Future Work**
