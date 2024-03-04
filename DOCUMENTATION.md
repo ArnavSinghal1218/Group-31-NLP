@@ -150,7 +150,11 @@ While the core components like text embeddings and Transformers are established 
 
 
 **Experimental Setup and Results**
-Chose the "neuml/pubmedbert-base-embeddings" for the model, as this had the best performance on the pubmed dataset, as seen from the results on huggingface. We did not have time to test out a lot of different models, so simply choose the one with the best performance from before. 
+Experimental Setup: Our experimental framework was established using the txtai library, which allowed for the integration of the PubMedBERT embeddings for semantic analysis of medical literature. The dataset was derived from the first 9,999 PubMed articles, with the initial 100 articles used for in-depth analysis. Each document was uniquely identified by its PMID, incorporating both title and abstract for comprehensive context understanding.
+The txtai embeddings instance was initialized with the PubMedBERT model, specifically designed to grasp the nuances of biomedical text. The documents were indexed to create a searchable repository enabling efficient retrieval based on semantic similarity. This setup aimed to mirror real-world applications where rapid and relevant information retrieval from medical literature is crucial.
+Results: The indexing process highlighted the efficiency and scalability of using embeddings for large-scale text datasets, taking approximately 145 seconds for the initial 100 articles. The subsequent retrieval and question-answering tasks demonstrated the model's capability to extract relevant information and provide concise answers to specific medical-related questions.
+In our results, we observed the effectiveness of semantic search in identifying relevant documents that provide contextually rich answers. For instance, questions about the benefits of exercise on mental health yielded pertinent excerpts from the indexed articles, illustrating the model's ability to discern and retrieve relevant information.
+The question-answering component further refined this process by pinpointing precise text segments answering specific queries. Although not always perfectly aligned with the expected answers, the responses were generally informative and contextually relevant, showcasing the potential of transformer-based models in medical literature exploration.
 
 **Data:**
 
@@ -158,7 +162,7 @@ Source: Where did the data come from (e.g., specific PubMed article collection, 
 
 Size and format: First 9999 articles were used with abstracts
 
-Topic distribution: Were the articles evenly distributed across various healthcare topics, or was there a specific focus?
+Topic distribution: We have articles from 2013 to 2023, with intelligence in the abstract. 
 
 **Evaluation Method:**
 
