@@ -129,7 +129,7 @@ Output: The system displays the answer to the user.
 
 **Details:**
 
-evaluate_answer function: Calculates the Jaccard similarity between the system's answer and the ground truth answer (assuming annotated data is available). Jaccard similarity is a metric used to compare the similarity of two sets, and its calculation is detailed in the paper "A formula for the effective calculation of relative similarity based on data mining" by Paul Jaccard ([12]).
+evaluate_answer function: Calculates the Jaccard similarity between the system's answer and the ground truth answer. Jaccard similarity is a metric used to compare the similarity of two sets, and its calculation is detailed in the paper "A formula for the effective calculation of relative similarity based on data mining" by Paul Jaccard ([12]).
 
 accuracy function: Estimates the overall accuracy of the system by checking if the Jaccard similarity for each question-answer pair exceeds a threshold.
 
