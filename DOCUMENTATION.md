@@ -22,14 +22,14 @@ Mukul Bansal :- Mukul.Bansal@stud.uni-heidelberg.de
 
 | Members/Project Tasks | Data Acquisition | Data Cleaning & Preprocessing | Model Development & Training | User Interface Design & Development | Evaluation & Testing | Report/Documentation |
 |---|---|---|---|---|---|---|
-| Isak Bjerkem          |        ✅        |  -                            | ✅                          | ✅                                 | -                    | -                    |
+| Isak Bjerkem          |        ✅        |  ✅                            | ✅                          | ✅                                 | -                    | -                    |
 | Ou Li                 |        -          | ✅                           | ✅                          | -                                   | ✅                  |  -                   |
 | Arnav Singhal         |        ✅        |  ✅                          | -                            | -                                   | -                    | ✅                  |
 | Mukul Bansal          |        ✅        |   -                           | -                            | ✅                                 | -                    | -                    |
 
+Isak - I worked on getting some data, and a rudimentary model with embeddings for our first meeting with Prof. Gertz, and then tried to get a simple implementation of everything to work. As I ran into problems with docker, and opensearch I tried using elastic search, but as had issues with docker and didnt get it to work, Ou Li took over the work on the database. Then I made a draft, and improvements as we worked, on the QA-system, the UI, and integration of QA with the UI. Mukul then took over this proccess with the UI. 
 
-
-● **Advisor**: Give the name of your advisor.
+● **Advisor**: Prof. Dr. Michael Gertz
 
 ● **Anti-plagiarism Confirmation**: A short affirmation that you did the project's work
 on your own as already indicated in the template. We will provide you with such a
@@ -148,6 +148,7 @@ While the core components like text embeddings and Transformers are established 
 
 
 **Experimental Setup and Results**
+Chose the "neuml/pubmedbert-base-embeddings" for the model, as this had the best performance on the pubmed dataset, as seen from the results on huggingface. We did not have time to test out a lot of different models, so simply choose the one with the best performance from before. 
 
 **Data:**
 
@@ -186,6 +187,8 @@ instead of stating unproven claims.
 
 
 **Conclusion and Future Work**
+Our model is very simple, as we did not do fine tuning for our dataset, or got to do that much testing, as only one person had access to the opensearch database for the big, upscaled testing. This is the first thing to work further on, in addition to testing out different embeddings. 
+
 
 **Recap of Contributions:**
 
